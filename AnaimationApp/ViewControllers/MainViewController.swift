@@ -8,7 +8,7 @@
 import Spring
 
 class MainViewController: UIViewController {
-
+    
     // MARK: - IBOutlets
     @IBOutlet weak var presetLabel: UILabel!
     @IBOutlet weak var curveLabel: UILabel!
@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func changeAnimation(_ sender: Any) {
-            setUI()
+        setUI()
     }
     
     // MARK: - Private methods
@@ -50,21 +50,21 @@ class MainViewController: UIViewController {
             springView.curve = curve.rawValue
         }
         
-        if let delay = animation.delay.randomElement() {
+        if let delay = animation.delays.randomElement() {
             delayLabel.text = "Delay: \(String(format: "%.2f", delay))"
-        }
+        }ß
         
-        if let force = animation.force.randomElement() {
+        if let force = animation.forces.randomElement() {
             forceLabel.text = "Force: \(String(format: "%.2f", force))"
         }
         
-        if let duration = animation.duration.randomElement() {
+        if let duration = animation.durations.randomElement() {
             durationLabel.text = "Duration: \(String(format: "%.2f", duration))"
         }
         
         springView.animate()
         nextAnimation = animation.preset.randomElement()
-
+        
         if let nextAnimation = nextAnimation {
             nextAnimationButton.setTitle("Run \(nextAnimation)", for: .normal)
         }

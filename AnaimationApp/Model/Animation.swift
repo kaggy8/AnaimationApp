@@ -9,9 +9,9 @@ import Spring
 struct Animation {
     let preset: [Spring.AnimationPreset]
     let curve: [Spring.AnimationCurve]
-    let force: [Double]
-    let duration: [Double]
-    let delay: [Double]
+    let forces: [Double]
+    let durations: [Double]
+    let delays: [Double]
     
     static func getAnimation() -> Animation {
         let preset = Spring.AnimationPreset.allCases
@@ -24,8 +24,8 @@ struct Animation {
         
         return Animation(preset: preset,
                          curve: curve,
-                         force: numbers.shuffled(),
-                         duration: numbers.shuffled(),
-                         delay: numbers.shuffled())
+                         forces: numbers.shuffled(),
+                         durations: numbers.shuffled(),
+                         delays: numbers.shuffled())
     }
 }
