@@ -4,28 +4,36 @@
 //
 //  Created by Stanislav Demyanov on 10.07.2022.
 //
-import Spring
 
 struct Animation {
-    let preset: [Spring.AnimationPreset]
-    let curve: [Spring.AnimationCurve]
-    let forces: [Double]
-    let durations: [Double]
-    let delays: [Double]
+    let preset: String
+    let curve: String
+    let force: Double
+    let duration: Double
+    let delay: Double
+    
+    var description: String {
+        "Preset: \(preset.description)\n" +
+        "Curve: \(curve.description)\n" +
+        "Force: \(String(format: "%.2f", force))\n" +
+        "Duration: \(String(format: "%.2f", duration))\n" +
+        "Delay: \(String(format: "%.2f", delay))"
+    }
     
     static func getAnimation() -> Animation {
-        let preset = Spring.AnimationPreset.allCases
-        let curve = Spring.AnimationCurve.allCases
-        var numbers = [Double]()
+        let data = DataManager.shared
         
-        for _ in 1...100 {
-            numbers.append(Double.random(in: 0.15...1))
-        }
+        let preset = data.preset.randomElement()?.rawValue
+        let curve = data.curve.randomElement()?.rawValue
+        let force = data.force
+        let duration = data.duration
+        let delay = data.delay
         
-        return Animation(preset: preset,
-                         curve: curve,
-                         forces: numbers.shuffled(),
-                         durations: numbers.shuffled(),
-                         delays: numbers.shuffled())
+        return Animation(preset: preset ?? "Нет анимации",
+                         curve: curve ?? "Нет кривой анимации",
+                         force: Double.random(in: force),
+                         duration: Double.random(in: duration),
+                         delay: Double.random(in: delay))
     }
 }
+
